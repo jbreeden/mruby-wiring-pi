@@ -31,7 +31,7 @@ mruby_box_wiringPiNodeStruct(mrb_state* mrb, struct wiringPiNodeStruct *unboxed)
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  return mrb_obj_value(Data_Wrap_Struct(mrb, WiringPiNodeStruct_class(mrb), &struct wiringPiNodeStruct_data_type, box));
+  return mrb_obj_value(Data_Wrap_Struct(mrb, WiringPiNodeStruct_class(mrb), & wiringPiNodeStruct_data_type, box));
 }
 
 mrb_value
@@ -39,7 +39,7 @@ mruby_giftwrap_wiringPiNodeStruct(mrb_state* mrb, struct wiringPiNodeStruct *unb
    mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
    box->belongs_to_ruby = TRUE;
    box->obj = unboxed;
-   return mrb_obj_value(Data_Wrap_Struct(mrb, WiringPiNodeStruct_class(mrb), &struct wiringPiNodeStruct_data_type, box));
+   return mrb_obj_value(Data_Wrap_Struct(mrb, WiringPiNodeStruct_class(mrb), & wiringPiNodeStruct_data_type, box));
 }
 
 void
@@ -47,7 +47,7 @@ mruby_set_wiringPiNodeStruct_data_ptr(mrb_value obj, struct wiringPiNodeStruct *
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = FALSE;
   box->obj = unboxed;
-  mrb_data_init(obj, box, &struct wiringPiNodeStruct_data_type);
+  mrb_data_init(obj, box, &wiringPiNodeStruct_data_type);
 }
 
 void
@@ -55,7 +55,7 @@ mruby_gift_wiringPiNodeStruct_data_ptr(mrb_value obj, struct wiringPiNodeStruct 
   mruby_to_native_ref* box = (mruby_to_native_ref*)malloc(sizeof(mruby_to_native_ref));
   box->belongs_to_ruby = TRUE;
   box->obj = unboxed;
-  mrb_data_init(obj, box, &struct wiringPiNodeStruct_data_type);
+  mrb_data_init(obj, box, &wiringPiNodeStruct_data_type);
 }
 
 struct wiringPiNodeStruct *
