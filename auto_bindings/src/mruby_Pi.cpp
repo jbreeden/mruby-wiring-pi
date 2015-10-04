@@ -1446,7 +1446,7 @@ mrb_Pi_wpiPinToGpio(mrb_state* mrb, mrb_value self) {
 #endif
 
 
-void mrb_mruby_wiring_gem_init(mrb_state* mrb) {
+void mrb_mruby_wiring_pi_gem_init(mrb_state* mrb) {
   RClass* Pi_module = mrb_define_module(mrb, "Pi");
   mruby_Pi_define_macro_constants(mrb);
 
@@ -1580,7 +1580,7 @@ void mrb_mruby_wiring_gem_init(mrb_state* mrb) {
 
 }
 
-void mrb_mruby_wiring_gem_final(mrb_state* mrb){
+void mrb_mruby_wiring_pi_gem_final(mrb_state* mrb){
 
 }
 
