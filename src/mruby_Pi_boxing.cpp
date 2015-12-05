@@ -20,6 +20,7 @@ static void free_wiringPiNodeStruct(mrb_state* mrb, void* ptr) {
       box->obj = NULL;
     }
   }
+  free(box);
 }
 
 static const mrb_data_type wiringPiNodeStruct_data_type = {
