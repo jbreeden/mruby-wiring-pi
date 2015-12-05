@@ -59,45 +59,46 @@
  * will need to be verified and, sometimes, customized.
  */
 
-#define BIND_analogRead_FUNCTION FALSE
-#define BIND_analogWrite_FUNCTION FALSE
-#define BIND_delay_FUNCTION FALSE
-#define BIND_delayMicroseconds_FUNCTION FALSE
-#define BIND_digitalRead_FUNCTION FALSE
-#define BIND_digitalWrite_FUNCTION FALSE
-#define BIND_digitalWriteByte_FUNCTION FALSE
-#define BIND_getAlt_FUNCTION FALSE
-#define BIND_gpioClockSet_FUNCTION FALSE
-#define BIND_micros_FUNCTION FALSE
-#define BIND_millis_FUNCTION FALSE
-#define BIND_physPinToGpio_FUNCTION FALSE
+#define BIND_analogRead_FUNCTION TRUE
+#define BIND_analogWrite_FUNCTION TRUE
+#define BIND_delay_FUNCTION TRUE
+#define BIND_delayMicroseconds_FUNCTION TRUE
+#define BIND_digitalRead_FUNCTION TRUE
+#define BIND_digitalWrite_FUNCTION TRUE
+#define BIND_digitalWriteByte_FUNCTION TRUE
+#define BIND_getAlt_FUNCTION TRUE
+#define BIND_gpioClockSet_FUNCTION TRUE
+#define BIND_micros_FUNCTION TRUE
+#define BIND_millis_FUNCTION TRUE
+#define BIND_physPinToGpio_FUNCTION TRUE
+/* Undocumented & meant for gpio utility only */
 #define BIND_piBoardId_FUNCTION FALSE
-#define BIND_piBoardRev_FUNCTION FALSE
-#define BIND_piHiPri_FUNCTION FALSE
-#define BIND_piLock_FUNCTION FALSE
-#define BIND_pinMode_FUNCTION FALSE
-#define BIND_pinModeAlt_FUNCTION FALSE
+#define BIND_piBoardRev_FUNCTION TRUE
+#define BIND_piHiPri_FUNCTION TRUE
+#define BIND_piLock_FUNCTION TRUE
+#define BIND_pinMode_FUNCTION TRUE
+#define BIND_pinModeAlt_FUNCTION TRUE
 #define BIND_piThreadCreate_FUNCTION FALSE
-#define BIND_piUnlock_FUNCTION FALSE
-#define BIND_pullUpDnControl_FUNCTION FALSE
-#define BIND_pwmSetClock_FUNCTION FALSE
-#define BIND_pwmSetMode_FUNCTION FALSE
-#define BIND_pwmSetRange_FUNCTION FALSE
-#define BIND_pwmToneWrite_FUNCTION FALSE
-#define BIND_pwmWrite_FUNCTION FALSE
-#define BIND_setPadDrive_FUNCTION FALSE
-#define BIND_waitForInterrupt_FUNCTION FALSE
-#define BIND_wiringPiFailure_FUNCTION FALSE
-#define BIND_wiringPiFindNode_FUNCTION FALSE
+#define BIND_piUnlock_FUNCTION TRUE
+#define BIND_pullUpDnControl_FUNCTION TRUE
+#define BIND_pwmSetClock_FUNCTION TRUE
+#define BIND_pwmSetMode_FUNCTION TRUE
+#define BIND_pwmSetRange_FUNCTION TRUE
+#define BIND_pwmToneWrite_FUNCTION TRUE
+#define BIND_pwmWrite_FUNCTION TRUE
+#define BIND_setPadDrive_FUNCTION TRUE
+#define BIND_waitForInterrupt_FUNCTION TRUE
+#define BIND_wiringPiFailure_FUNCTION TRUE
+#define BIND_wiringPiFindNode_FUNCTION TRUE
 #define BIND_wiringPiISR_FUNCTION FALSE
-#define BIND_wiringPiNewNode_FUNCTION FALSE
-#define BIND_wiringPiSetup_FUNCTION FALSE
-#define BIND_wiringPiSetupGpio_FUNCTION FALSE
-#define BIND_wiringPiSetupPhys_FUNCTION FALSE
+#define BIND_wiringPiNewNode_FUNCTION TRUE
+#define BIND_wiringPiSetup_FUNCTION TRUE
+#define BIND_wiringPiSetupGpio_FUNCTION TRUE
+#define BIND_wiringPiSetupPhys_FUNCTION TRUE
 #define BIND_wiringPiSetupPiFace_FUNCTION FALSE
 #define BIND_wiringPiSetupPiFaceForGpioProg_FUNCTION FALSE
-#define BIND_wiringPiSetupSys_FUNCTION FALSE
-#define BIND_wpiPinToGpio_FUNCTION FALSE
+#define BIND_wiringPiSetupSys_FUNCTION TRUE
+#define BIND_wpiPinToGpio_FUNCTION TRUE
 
 /*
  * Header Files
@@ -114,6 +115,9 @@
  */
 
 #include <stdlib.h>
+/* Tell C++ compilers to generate INT32_MAX & friends, which is used by mruby */
+#define __STDC_LIMIT_MACROS
+#include <stdint.h>
 #include "mruby.h"
 #include "mruby/array.h"
 #include "mruby/class.h"

@@ -534,18 +534,10 @@ mrb_Pi_piBoardRev(mrb_state* mrb, mrb_value self) {
  */
 mrb_value
 mrb_Pi_piHiPri(mrb_state* mrb, mrb_value self) {
-  mrb_value pri;
+  mrb_int native_pri;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "o", &pri);
-
-
-  /* Type checking */
-  TODO_type_check_int(pri);
-
-
-  /* Unbox parameters */
-  const int native_pri = TODO_mruby_unbox_int(pri);
+  mrb_get_args(mrb, "i", &native_pri);
 
   /* Invocation */
   int result = piHiPri(native_pri);
@@ -1446,7 +1438,7 @@ mrb_Pi_wpiPinToGpio(mrb_state* mrb, mrb_value self) {
 #endif
 
 
-void mrb_mruby_wiring_gem_init(mrb_state* mrb) {
+void mrb_mruby_wiring_pi_gem_init(mrb_state* mrb) {
   RClass* Pi_module = mrb_define_module(mrb, "Pi");
   mruby_Pi_define_macro_constants(mrb);
 
@@ -1580,7 +1572,7 @@ void mrb_mruby_wiring_gem_init(mrb_state* mrb) {
 
 }
 
-void mrb_mruby_wiring_gem_final(mrb_state* mrb){
+void mrb_mruby_wiring_pi_gem_final(mrb_state* mrb){
 
 }
 
