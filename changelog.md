@@ -1,5 +1,5 @@
-Version: 4d06ca5ed1618f94218a3f9c68317c6267a298a1
--------------------------------------------------
+Version: 4d06ca5ed1
+-------------------
 
 I've been upgrading all of my mrbgems to work with the current version of [mruby-bindings](https://github.com/jbreeden/mruby-bindings). As part of that
 work, I came up with scripts to replace all manual type checking with the
@@ -13,7 +13,7 @@ to read `if (mrb_obj_is_kind_of(mrb, obj, mrb->fixnum_class))` again.
 
 Once I get this on a Pi & make sure it still works I'll make an actual tag.
 
-Version: 3c3dc179b7db3156a9912c14d157f90685760615 (no tags yet)
----------------------------------------------------------------
+Version: 3c3dc179b7 (no tags yet)
+---------------------------------
 
 The original generated bindings, & the `Pin` class implementation.
