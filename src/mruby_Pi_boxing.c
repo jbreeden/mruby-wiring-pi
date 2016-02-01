@@ -1,6 +1,3 @@
-/*
- * TODO: Update includes
- */
  #include "mruby_Pi.h"
 
 
@@ -64,4 +61,3 @@ mruby_unbox_wiringPiNodeStruct(mrb_value boxed) {
   return (struct wiringPiNodeStruct *)((mruby_to_native_ref *)DATA_PTR(boxed))->obj;
 }
 #endif
-

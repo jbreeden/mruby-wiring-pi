@@ -1,7 +1,3 @@
-/*
- * TODO: INCLUDES
- */
-
 #include "mruby_Pi.h"
 
 #ifdef __cplusplus
@@ -19,30 +15,15 @@ extern "C" {
  */
 mrb_value
 mrb_Pi_analogRead(mrb_state* mrb, mrb_value self) {
-  mrb_value pin;
+  mrb_int native_pin;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "o", &pin);
-
-
-  /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, pin, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-
-
-  /* Unbox parameters */
-  int native_pin = mrb_fixnum(pin);
+  mrb_get_args(mrb, "i", &native_pin);
 
   /* Invocation */
   int result = analogRead(native_pin);
 
   /* Box the return value */
-  if (result > MRB_INT_MAX) {
-    mrb_raise(mrb, mrb->eStandardError_class, "MRuby cannot represent integers greater than MRB_INT_MAX");
-    return mrb_nil_value();
-  }
   mrb_value return_value = mrb_fixnum_value(result);
 
   return return_value;
@@ -61,28 +42,11 @@ mrb_Pi_analogRead(mrb_state* mrb, mrb_value self) {
  */
 mrb_value
 mrb_Pi_analogWrite(mrb_state* mrb, mrb_value self) {
-  mrb_value pin;
-  mrb_value value;
+  mrb_int native_pin;
+  mrb_int native_value;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "oo", &pin, &value);
-
-
-  /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, pin, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-  if (!mrb_obj_is_kind_of(mrb, value, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-
-
-  /* Unbox parameters */
-  int native_pin = mrb_fixnum(pin);
-
-  int native_value = mrb_fixnum(value);
+  mrb_get_args(mrb, "ii", &native_pin, &native_value);
 
   /* Invocation */
   analogWrite(native_pin, native_value);
@@ -102,21 +66,10 @@ mrb_Pi_analogWrite(mrb_state* mrb, mrb_value self) {
  */
 mrb_value
 mrb_Pi_delay(mrb_state* mrb, mrb_value self) {
-  mrb_value howLong;
+  mrb_int native_howLong;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "o", &howLong);
-
-
-  /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, howLong, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-
-
-  /* Unbox parameters */
-  unsigned int native_howLong = mrb_fixnum(howLong);
+  mrb_get_args(mrb, "i", &native_howLong);
 
   /* Invocation */
   delay(native_howLong);
@@ -136,21 +89,10 @@ mrb_Pi_delay(mrb_state* mrb, mrb_value self) {
  */
 mrb_value
 mrb_Pi_delayMicroseconds(mrb_state* mrb, mrb_value self) {
-  mrb_value howLong;
+  mrb_int native_howLong;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "o", &howLong);
-
-
-  /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, howLong, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-
-
-  /* Unbox parameters */
-  unsigned int native_howLong = mrb_fixnum(howLong);
+  mrb_get_args(mrb, "i", &native_howLong);
 
   /* Invocation */
   delayMicroseconds(native_howLong);
@@ -170,30 +112,15 @@ mrb_Pi_delayMicroseconds(mrb_state* mrb, mrb_value self) {
  */
 mrb_value
 mrb_Pi_digitalRead(mrb_state* mrb, mrb_value self) {
-  mrb_value pin;
+  mrb_int native_pin;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "o", &pin);
-
-
-  /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, pin, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-
-
-  /* Unbox parameters */
-  int native_pin = mrb_fixnum(pin);
+  mrb_get_args(mrb, "i", &native_pin);
 
   /* Invocation */
   int result = digitalRead(native_pin);
 
   /* Box the return value */
-  if (result > MRB_INT_MAX) {
-    mrb_raise(mrb, mrb->eStandardError_class, "MRuby cannot represent integers greater than MRB_INT_MAX");
-    return mrb_nil_value();
-  }
   mrb_value return_value = mrb_fixnum_value(result);
 
   return return_value;
@@ -212,28 +139,11 @@ mrb_Pi_digitalRead(mrb_state* mrb, mrb_value self) {
  */
 mrb_value
 mrb_Pi_digitalWrite(mrb_state* mrb, mrb_value self) {
-  mrb_value pin;
-  mrb_value value;
+  mrb_int native_pin;
+  mrb_int native_value;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "oo", &pin, &value);
-
-
-  /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, pin, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-  if (!mrb_obj_is_kind_of(mrb, value, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-
-
-  /* Unbox parameters */
-  int native_pin = mrb_fixnum(pin);
-
-  int native_value = mrb_fixnum(value);
+  mrb_get_args(mrb, "ii", &native_pin, &native_value);
 
   /* Invocation */
   digitalWrite(native_pin, native_value);
@@ -253,21 +163,10 @@ mrb_Pi_digitalWrite(mrb_state* mrb, mrb_value self) {
  */
 mrb_value
 mrb_Pi_digitalWriteByte(mrb_state* mrb, mrb_value self) {
-  mrb_value value;
+  mrb_int native_value;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "o", &value);
-
-
-  /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, value, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-
-
-  /* Unbox parameters */
-  int native_value = mrb_fixnum(value);
+  mrb_get_args(mrb, "i", &native_value);
 
   /* Invocation */
   digitalWriteByte(native_value);
@@ -287,30 +186,15 @@ mrb_Pi_digitalWriteByte(mrb_state* mrb, mrb_value self) {
  */
 mrb_value
 mrb_Pi_getAlt(mrb_state* mrb, mrb_value self) {
-  mrb_value pin;
+  mrb_int native_pin;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "o", &pin);
-
-
-  /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, pin, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-
-
-  /* Unbox parameters */
-  int native_pin = mrb_fixnum(pin);
+  mrb_get_args(mrb, "i", &native_pin);
 
   /* Invocation */
   int result = getAlt(native_pin);
 
   /* Box the return value */
-  if (result > MRB_INT_MAX) {
-    mrb_raise(mrb, mrb->eStandardError_class, "MRuby cannot represent integers greater than MRB_INT_MAX");
-    return mrb_nil_value();
-  }
   mrb_value return_value = mrb_fixnum_value(result);
 
   return return_value;
@@ -329,28 +213,11 @@ mrb_Pi_getAlt(mrb_state* mrb, mrb_value self) {
  */
 mrb_value
 mrb_Pi_gpioClockSet(mrb_state* mrb, mrb_value self) {
-  mrb_value pin;
-  mrb_value freq;
+  mrb_int native_pin;
+  mrb_int native_freq;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "oo", &pin, &freq);
-
-
-  /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, pin, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-  if (!mrb_obj_is_kind_of(mrb, freq, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-
-
-  /* Unbox parameters */
-  int native_pin = mrb_fixnum(pin);
-
-  int native_freq = mrb_fixnum(freq);
+  mrb_get_args(mrb, "ii", &native_pin, &native_freq);
 
   /* Invocation */
   gpioClockSet(native_pin, native_freq);
@@ -373,10 +240,6 @@ mrb_Pi_micros(mrb_state* mrb, mrb_value self) {
   unsigned int result = micros();
 
   /* Box the return value */
-  if (result > MRB_INT_MAX) {
-    mrb_raise(mrb, mrb->eStandardError_class, "MRuby cannot represent integers greater than MRB_INT_MAX");
-    return mrb_nil_value();
-  }
   mrb_value return_value = mrb_fixnum_value(result);
 
   return return_value;
@@ -397,10 +260,6 @@ mrb_Pi_millis(mrb_state* mrb, mrb_value self) {
   unsigned int result = millis();
 
   /* Box the return value */
-  if (result > MRB_INT_MAX) {
-    mrb_raise(mrb, mrb->eStandardError_class, "MRuby cannot represent integers greater than MRB_INT_MAX");
-    return mrb_nil_value();
-  }
   mrb_value return_value = mrb_fixnum_value(result);
 
   return return_value;
@@ -418,30 +277,15 @@ mrb_Pi_millis(mrb_state* mrb, mrb_value self) {
  */
 mrb_value
 mrb_Pi_physPinToGpio(mrb_state* mrb, mrb_value self) {
-  mrb_value physPin;
+  mrb_int native_physPin;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "o", &physPin);
-
-
-  /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, physPin, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-
-
-  /* Unbox parameters */
-  int native_physPin = mrb_fixnum(physPin);
+  mrb_get_args(mrb, "i", &native_physPin);
 
   /* Invocation */
   int result = physPinToGpio(native_physPin);
 
   /* Box the return value */
-  if (result > MRB_INT_MAX) {
-    mrb_raise(mrb, mrb->eStandardError_class, "MRuby cannot represent integers greater than MRB_INT_MAX");
-    return mrb_nil_value();
-  }
   mrb_value return_value = mrb_fixnum_value(result);
 
   return return_value;
@@ -472,14 +316,12 @@ mrb_Pi_piBoardId(mrb_state* mrb, mrb_value self) {
   /* Fetch the args */
   mrb_get_args(mrb, "ooooo", &model, &rev, &mem, &maker, &overVolted);
 
-
   /* Type checking */
   TODO_type_check_int_PTR(model);
   TODO_type_check_int_PTR(rev);
   TODO_type_check_int_PTR(mem);
   TODO_type_check_int_PTR(maker);
   TODO_type_check_int_PTR(overVolted);
-
 
   /* Unbox parameters */
   int * native_model = TODO_mruby_unbox_int_PTR(model);
@@ -513,10 +355,6 @@ mrb_Pi_piBoardRev(mrb_state* mrb, mrb_value self) {
   int result = piBoardRev();
 
   /* Box the return value */
-  if (result > MRB_INT_MAX) {
-    mrb_raise(mrb, mrb->eStandardError_class, "MRuby cannot represent integers greater than MRB_INT_MAX");
-    return mrb_nil_value();
-  }
   mrb_value return_value = mrb_fixnum_value(result);
 
   return return_value;
@@ -543,10 +381,6 @@ mrb_Pi_piHiPri(mrb_state* mrb, mrb_value self) {
   int result = piHiPri(native_pri);
 
   /* Box the return value */
-  if (result > MRB_INT_MAX) {
-    mrb_raise(mrb, mrb->eStandardError_class, "MRuby cannot represent integers greater than MRB_INT_MAX");
-    return mrb_nil_value();
-  }
   mrb_value return_value = mrb_fixnum_value(result);
 
   return return_value;
@@ -564,21 +398,10 @@ mrb_Pi_piHiPri(mrb_state* mrb, mrb_value self) {
  */
 mrb_value
 mrb_Pi_piLock(mrb_state* mrb, mrb_value self) {
-  mrb_value key;
+  mrb_int native_key;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "o", &key);
-
-
-  /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, key, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-
-
-  /* Unbox parameters */
-  int native_key = mrb_fixnum(key);
+  mrb_get_args(mrb, "i", &native_key);
 
   /* Invocation */
   piLock(native_key);
@@ -599,28 +422,11 @@ mrb_Pi_piLock(mrb_state* mrb, mrb_value self) {
  */
 mrb_value
 mrb_Pi_pinMode(mrb_state* mrb, mrb_value self) {
-  mrb_value pin;
-  mrb_value mode;
+  mrb_int native_pin;
+  mrb_int native_mode;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "oo", &pin, &mode);
-
-
-  /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, pin, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-  if (!mrb_obj_is_kind_of(mrb, mode, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-
-
-  /* Unbox parameters */
-  int native_pin = mrb_fixnum(pin);
-
-  int native_mode = mrb_fixnum(mode);
+  mrb_get_args(mrb, "ii", &native_pin, &native_mode);
 
   /* Invocation */
   pinMode(native_pin, native_mode);
@@ -641,28 +447,11 @@ mrb_Pi_pinMode(mrb_state* mrb, mrb_value self) {
  */
 mrb_value
 mrb_Pi_pinModeAlt(mrb_state* mrb, mrb_value self) {
-  mrb_value pin;
-  mrb_value mode;
+  mrb_int native_pin;
+  mrb_int native_mode;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "oo", &pin, &mode);
-
-
-  /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, pin, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-  if (!mrb_obj_is_kind_of(mrb, mode, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-
-
-  /* Unbox parameters */
-  int native_pin = mrb_fixnum(pin);
-
-  int native_mode = mrb_fixnum(mode);
+  mrb_get_args(mrb, "ii", &native_pin, &native_mode);
 
   /* Invocation */
   pinModeAlt(native_pin, native_mode);
@@ -689,11 +478,9 @@ mrb_Pi_piThreadCreate(mrb_state* mrb, mrb_value self) {
   /* Fetch the args */
   mrb_get_args(mrb, "oo", &fn, &arg2);
 
-
   /* Type checking */
   TODO_type_check_void_PTR_LPAREN_PTR_RPAREN_LPAREN_void_PTR_RPAREN(fn);
   TODO_type_check_void_PTR(arg2);
-
 
   /* Unbox parameters */
   void *(*native_fn)(void *) = TODO_mruby_unbox_void_PTR_LPAREN_PTR_RPAREN_LPAREN_void_PTR_RPAREN(fn);
@@ -704,10 +491,6 @@ mrb_Pi_piThreadCreate(mrb_state* mrb, mrb_value self) {
   int result = piThreadCreate(native_fn, native_arg2);
 
   /* Box the return value */
-  if (result > MRB_INT_MAX) {
-    mrb_raise(mrb, mrb->eStandardError_class, "MRuby cannot represent integers greater than MRB_INT_MAX");
-    return mrb_nil_value();
-  }
   mrb_value return_value = mrb_fixnum_value(result);
 
   return return_value;
@@ -725,21 +508,10 @@ mrb_Pi_piThreadCreate(mrb_state* mrb, mrb_value self) {
  */
 mrb_value
 mrb_Pi_piUnlock(mrb_state* mrb, mrb_value self) {
-  mrb_value key;
+  mrb_int native_key;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "o", &key);
-
-
-  /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, key, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-
-
-  /* Unbox parameters */
-  int native_key = mrb_fixnum(key);
+  mrb_get_args(mrb, "i", &native_key);
 
   /* Invocation */
   piUnlock(native_key);
@@ -760,28 +532,11 @@ mrb_Pi_piUnlock(mrb_state* mrb, mrb_value self) {
  */
 mrb_value
 mrb_Pi_pullUpDnControl(mrb_state* mrb, mrb_value self) {
-  mrb_value pin;
-  mrb_value pud;
+  mrb_int native_pin;
+  mrb_int native_pud;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "oo", &pin, &pud);
-
-
-  /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, pin, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-  if (!mrb_obj_is_kind_of(mrb, pud, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-
-
-  /* Unbox parameters */
-  int native_pin = mrb_fixnum(pin);
-
-  int native_pud = mrb_fixnum(pud);
+  mrb_get_args(mrb, "ii", &native_pin, &native_pud);
 
   /* Invocation */
   pullUpDnControl(native_pin, native_pud);
@@ -801,21 +556,10 @@ mrb_Pi_pullUpDnControl(mrb_state* mrb, mrb_value self) {
  */
 mrb_value
 mrb_Pi_pwmSetClock(mrb_state* mrb, mrb_value self) {
-  mrb_value divisor;
+  mrb_int native_divisor;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "o", &divisor);
-
-
-  /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, divisor, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-
-
-  /* Unbox parameters */
-  int native_divisor = mrb_fixnum(divisor);
+  mrb_get_args(mrb, "i", &native_divisor);
 
   /* Invocation */
   pwmSetClock(native_divisor);
@@ -835,21 +579,10 @@ mrb_Pi_pwmSetClock(mrb_state* mrb, mrb_value self) {
  */
 mrb_value
 mrb_Pi_pwmSetMode(mrb_state* mrb, mrb_value self) {
-  mrb_value mode;
+  mrb_int native_mode;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "o", &mode);
-
-
-  /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, mode, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-
-
-  /* Unbox parameters */
-  int native_mode = mrb_fixnum(mode);
+  mrb_get_args(mrb, "i", &native_mode);
 
   /* Invocation */
   pwmSetMode(native_mode);
@@ -869,21 +602,10 @@ mrb_Pi_pwmSetMode(mrb_state* mrb, mrb_value self) {
  */
 mrb_value
 mrb_Pi_pwmSetRange(mrb_state* mrb, mrb_value self) {
-  mrb_value range;
+  mrb_int native_range;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "o", &range);
-
-
-  /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, range, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-
-
-  /* Unbox parameters */
-  unsigned int native_range = mrb_fixnum(range);
+  mrb_get_args(mrb, "i", &native_range);
 
   /* Invocation */
   pwmSetRange(native_range);
@@ -904,28 +626,11 @@ mrb_Pi_pwmSetRange(mrb_state* mrb, mrb_value self) {
  */
 mrb_value
 mrb_Pi_pwmToneWrite(mrb_state* mrb, mrb_value self) {
-  mrb_value pin;
-  mrb_value freq;
+  mrb_int native_pin;
+  mrb_int native_freq;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "oo", &pin, &freq);
-
-
-  /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, pin, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-  if (!mrb_obj_is_kind_of(mrb, freq, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-
-
-  /* Unbox parameters */
-  int native_pin = mrb_fixnum(pin);
-
-  int native_freq = mrb_fixnum(freq);
+  mrb_get_args(mrb, "ii", &native_pin, &native_freq);
 
   /* Invocation */
   pwmToneWrite(native_pin, native_freq);
@@ -946,28 +651,11 @@ mrb_Pi_pwmToneWrite(mrb_state* mrb, mrb_value self) {
  */
 mrb_value
 mrb_Pi_pwmWrite(mrb_state* mrb, mrb_value self) {
-  mrb_value pin;
-  mrb_value value;
+  mrb_int native_pin;
+  mrb_int native_value;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "oo", &pin, &value);
-
-
-  /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, pin, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-  if (!mrb_obj_is_kind_of(mrb, value, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-
-
-  /* Unbox parameters */
-  int native_pin = mrb_fixnum(pin);
-
-  int native_value = mrb_fixnum(value);
+  mrb_get_args(mrb, "ii", &native_pin, &native_value);
 
   /* Invocation */
   pwmWrite(native_pin, native_value);
@@ -988,28 +676,11 @@ mrb_Pi_pwmWrite(mrb_state* mrb, mrb_value self) {
  */
 mrb_value
 mrb_Pi_setPadDrive(mrb_state* mrb, mrb_value self) {
-  mrb_value group;
-  mrb_value value;
+  mrb_int native_group;
+  mrb_int native_value;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "oo", &group, &value);
-
-
-  /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, group, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-  if (!mrb_obj_is_kind_of(mrb, value, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-
-
-  /* Unbox parameters */
-  int native_group = mrb_fixnum(group);
-
-  int native_value = mrb_fixnum(value);
+  mrb_get_args(mrb, "ii", &native_group, &native_value);
 
   /* Invocation */
   setPadDrive(native_group, native_value);
@@ -1030,37 +701,16 @@ mrb_Pi_setPadDrive(mrb_state* mrb, mrb_value self) {
  */
 mrb_value
 mrb_Pi_waitForInterrupt(mrb_state* mrb, mrb_value self) {
-  mrb_value pin;
-  mrb_value mS;
+  mrb_int native_pin;
+  mrb_int native_mS;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "oo", &pin, &mS);
-
-
-  /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, pin, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-  if (!mrb_obj_is_kind_of(mrb, mS, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-
-
-  /* Unbox parameters */
-  int native_pin = mrb_fixnum(pin);
-
-  int native_mS = mrb_fixnum(mS);
+  mrb_get_args(mrb, "ii", &native_pin, &native_mS);
 
   /* Invocation */
   int result = waitForInterrupt(native_pin, native_mS);
 
   /* Box the return value */
-  if (result > MRB_INT_MAX) {
-    mrb_raise(mrb, mrb->eStandardError_class, "MRuby cannot represent integers greater than MRB_INT_MAX");
-    return mrb_nil_value();
-  }
   mrb_value return_value = mrb_fixnum_value(result);
 
   return return_value;
@@ -1079,37 +729,16 @@ mrb_Pi_waitForInterrupt(mrb_state* mrb, mrb_value self) {
  */
 mrb_value
 mrb_Pi_wiringPiFailure(mrb_state* mrb, mrb_value self) {
-  mrb_value fatal;
-  mrb_value message;
+  mrb_int native_fatal;
+  char * native_message;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "oo", &fatal, &message);
-
-
-  /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, fatal, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-  if (!mrb_obj_is_kind_of(mrb, message, mrb->string_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "String expected");
-    return mrb_nil_value();
-  }
-
-
-  /* Unbox parameters */
-  int native_fatal = mrb_fixnum(fatal);
-
-  const char * native_message = mrb_string_value_cstr(mrb, &message);
+  mrb_get_args(mrb, "iz", &native_fatal, &native_message);
 
   /* Invocation */
   int result = wiringPiFailure(native_fatal, native_message);
 
   /* Box the return value */
-  if (result > MRB_INT_MAX) {
-    mrb_raise(mrb, mrb->eStandardError_class, "MRuby cannot represent integers greater than MRB_INT_MAX");
-    return mrb_nil_value();
-  }
   mrb_value return_value = mrb_fixnum_value(result);
 
   return return_value;
@@ -1127,21 +756,10 @@ mrb_Pi_wiringPiFailure(mrb_state* mrb, mrb_value self) {
  */
 mrb_value
 mrb_Pi_wiringPiFindNode(mrb_state* mrb, mrb_value self) {
-  mrb_value pin;
+  mrb_int native_pin;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "o", &pin);
-
-
-  /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, pin, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-
-
-  /* Unbox parameters */
-  int native_pin = mrb_fixnum(pin);
+  mrb_get_args(mrb, "i", &native_pin);
 
   /* Invocation */
   struct wiringPiNodeStruct * result = wiringPiFindNode(native_pin);
@@ -1166,41 +784,23 @@ mrb_Pi_wiringPiFindNode(mrb_state* mrb, mrb_value self) {
  */
 mrb_value
 mrb_Pi_wiringPiISR(mrb_state* mrb, mrb_value self) {
-  mrb_value pin;
-  mrb_value mode;
+  mrb_int native_pin;
+  mrb_int native_mode;
   mrb_value function;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "ooo", &pin, &mode, &function);
-
+  mrb_get_args(mrb, "iio", &native_pin, &native_mode, &function);
 
   /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, pin, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-  if (!mrb_obj_is_kind_of(mrb, mode, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
   TODO_type_check_void_LPAREN_PTR_RPAREN_LPAREN_void_RPAREN(function);
 
-
   /* Unbox parameters */
-  int native_pin = mrb_fixnum(pin);
-
-  int native_mode = mrb_fixnum(mode);
-
   void (*native_function)(void) = TODO_mruby_unbox_void_LPAREN_PTR_RPAREN_LPAREN_void_RPAREN(function);
 
   /* Invocation */
   int result = wiringPiISR(native_pin, native_mode, native_function);
 
   /* Box the return value */
-  if (result > MRB_INT_MAX) {
-    mrb_raise(mrb, mrb->eStandardError_class, "MRuby cannot represent integers greater than MRB_INT_MAX");
-    return mrb_nil_value();
-  }
   mrb_value return_value = mrb_fixnum_value(result);
 
   return return_value;
@@ -1219,28 +819,11 @@ mrb_Pi_wiringPiISR(mrb_state* mrb, mrb_value self) {
  */
 mrb_value
 mrb_Pi_wiringPiNewNode(mrb_state* mrb, mrb_value self) {
-  mrb_value pinBase;
-  mrb_value numPins;
+  mrb_int native_pinBase;
+  mrb_int native_numPins;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "oo", &pinBase, &numPins);
-
-
-  /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, pinBase, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-  if (!mrb_obj_is_kind_of(mrb, numPins, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-
-
-  /* Unbox parameters */
-  int native_pinBase = mrb_fixnum(pinBase);
-
-  int native_numPins = mrb_fixnum(numPins);
+  mrb_get_args(mrb, "ii", &native_pinBase, &native_numPins);
 
   /* Invocation */
   struct wiringPiNodeStruct * result = wiringPiNewNode(native_pinBase, native_numPins);
@@ -1266,10 +849,6 @@ mrb_Pi_wiringPiSetup(mrb_state* mrb, mrb_value self) {
   int result = wiringPiSetup();
 
   /* Box the return value */
-  if (result > MRB_INT_MAX) {
-    mrb_raise(mrb, mrb->eStandardError_class, "MRuby cannot represent integers greater than MRB_INT_MAX");
-    return mrb_nil_value();
-  }
   mrb_value return_value = mrb_fixnum_value(result);
 
   return return_value;
@@ -1290,10 +869,6 @@ mrb_Pi_wiringPiSetupGpio(mrb_state* mrb, mrb_value self) {
   int result = wiringPiSetupGpio();
 
   /* Box the return value */
-  if (result > MRB_INT_MAX) {
-    mrb_raise(mrb, mrb->eStandardError_class, "MRuby cannot represent integers greater than MRB_INT_MAX");
-    return mrb_nil_value();
-  }
   mrb_value return_value = mrb_fixnum_value(result);
 
   return return_value;
@@ -1314,10 +889,6 @@ mrb_Pi_wiringPiSetupPhys(mrb_state* mrb, mrb_value self) {
   int result = wiringPiSetupPhys();
 
   /* Box the return value */
-  if (result > MRB_INT_MAX) {
-    mrb_raise(mrb, mrb->eStandardError_class, "MRuby cannot represent integers greater than MRB_INT_MAX");
-    return mrb_nil_value();
-  }
   mrb_value return_value = mrb_fixnum_value(result);
 
   return return_value;
@@ -1338,10 +909,6 @@ mrb_Pi_wiringPiSetupPiFace(mrb_state* mrb, mrb_value self) {
   int result = wiringPiSetupPiFace();
 
   /* Box the return value */
-  if (result > MRB_INT_MAX) {
-    mrb_raise(mrb, mrb->eStandardError_class, "MRuby cannot represent integers greater than MRB_INT_MAX");
-    return mrb_nil_value();
-  }
   mrb_value return_value = mrb_fixnum_value(result);
 
   return return_value;
@@ -1362,10 +929,6 @@ mrb_Pi_wiringPiSetupPiFaceForGpioProg(mrb_state* mrb, mrb_value self) {
   int result = wiringPiSetupPiFaceForGpioProg();
 
   /* Box the return value */
-  if (result > MRB_INT_MAX) {
-    mrb_raise(mrb, mrb->eStandardError_class, "MRuby cannot represent integers greater than MRB_INT_MAX");
-    return mrb_nil_value();
-  }
   mrb_value return_value = mrb_fixnum_value(result);
 
   return return_value;
@@ -1386,10 +949,6 @@ mrb_Pi_wiringPiSetupSys(mrb_state* mrb, mrb_value self) {
   int result = wiringPiSetupSys();
 
   /* Box the return value */
-  if (result > MRB_INT_MAX) {
-    mrb_raise(mrb, mrb->eStandardError_class, "MRuby cannot represent integers greater than MRB_INT_MAX");
-    return mrb_nil_value();
-  }
   mrb_value return_value = mrb_fixnum_value(result);
 
   return return_value;
@@ -1407,39 +966,23 @@ mrb_Pi_wiringPiSetupSys(mrb_state* mrb, mrb_value self) {
  */
 mrb_value
 mrb_Pi_wpiPinToGpio(mrb_state* mrb, mrb_value self) {
-  mrb_value wpiPin;
+  mrb_int native_wpiPin;
 
   /* Fetch the args */
-  mrb_get_args(mrb, "o", &wpiPin);
-
-
-  /* Type checking */
-  if (!mrb_obj_is_kind_of(mrb, wpiPin, mrb->fixnum_class)) {
-    mrb_raise(mrb, E_TYPE_ERROR, "Fixnum expected");
-    return mrb_nil_value();
-  }
-
-
-  /* Unbox parameters */
-  int native_wpiPin = mrb_fixnum(wpiPin);
+  mrb_get_args(mrb, "i", &native_wpiPin);
 
   /* Invocation */
   int result = wpiPinToGpio(native_wpiPin);
 
   /* Box the return value */
-  if (result > MRB_INT_MAX) {
-    mrb_raise(mrb, mrb->eStandardError_class, "MRuby cannot represent integers greater than MRB_INT_MAX");
-    return mrb_nil_value();
-  }
   mrb_value return_value = mrb_fixnum_value(result);
 
   return return_value;
 }
 #endif
 
-
 void mrb_mruby_wiring_pi_gem_init(mrb_state* mrb) {
-  RClass* Pi_module = mrb_define_module(mrb, "Pi");
+  struct RClass* Pi_module = mrb_define_module(mrb, "Pi");
   mruby_Pi_define_macro_constants(mrb);
 
   /*
